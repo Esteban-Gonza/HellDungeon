@@ -74,6 +74,7 @@ public class Player : Mover{
     }
     public void Respawn(){
 
+        this.gameObject.SetActive(true);
         Heal(maxHitPoint);
         isAlive = true;
         lastImmune = Time.time;

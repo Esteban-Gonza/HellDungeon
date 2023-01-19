@@ -11,8 +11,16 @@ public class CharacterMenu : MonoBehaviour{
 
     //Logic
     int currentCharacterSelection = 0;
+    bool menuIsOpen;
     public Image characterSelectionSprite, weaponSprite;
     public RectTransform xpBar;
+    Animator menuUIAnimator;
+
+    void Start() {
+        
+        menuUIAnimator = GetComponent<Animator>();
+        menuIsOpen = false;
+    }
 
     //Character Selection
     public void OnArrowClick(bool right){
@@ -80,5 +88,23 @@ public class CharacterMenu : MonoBehaviour{
             xpBar.localScale = new Vector3(completionRadio, 1 , 1);
             xpText.text = currentXPIntoLevel.ToString() + " / " + diff;
         }
+    }
+
+    void Update() {
+        
+        if(Input.GetKeyDown(KeyCode.P) && menuIsOpen == false){
+
+            menuIsOpen = true;
+            menuUIAnimator.SetTrigger("Show");
+            SoundManager.instance.audioSource.PlayOneShot(SoundManager.instance.button);
+            UpdateMenu();
+
+        } else if(Input.GetKeyDown(KeyCode.P) && menuIsOpen == true){
+
+            menuIsOpen = false;
+            menuUIAnimator.SetTrigger("Hide");
+        }
+
+
     }
 }

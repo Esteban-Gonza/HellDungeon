@@ -8,7 +8,7 @@ public class BetaCanvas : MonoBehaviour{
     [SerializeField] Animator introUIAnimator;
 
     void Start() {
-        
+
         StartCoroutine(StartScene());
     }
 
